@@ -12,11 +12,26 @@
 <a href="https://arxiv.org/abs/2511.22699" target="_blank"><img src="https://img.shields.io/badge/Report-b5212f.svg?logo=arxiv" height="21px"></a>
 
 
-Welcome to the official repository for the Z-Image（造相）project!
+欢迎来到Z-Image（造相）基于官方代码库修改的版本!
+Welcome to the modified version of Z-Image (Photography Creation) based on the official codebase!
 
 </div>
 
+## 📢 简易说明/Brief description
+此版本在官方的基础上增加了一个UI，请使用Z-Image-Launcher.exe来启动这个UI，这是我第一次制作文生图之类的项目UI，肯定有很多不足之处，请谅解。
+本项目的是出于我的笔记本电脑是4060的显卡，只有8GB显存，如果直接使用官方的版本，出图的效率非常低，但是我也不想用ComfyUI，太繁琐，我只是要一个能出图的UI，简单，方便即可，于是就有了这个项目。
+最小支持2GB显存(CUDA),16GB 内存，推荐4GB显存，32GB内存以上。
 
+This version adds a UI on the basis of the official one. Please use Z-Image-Launcher.exe to start this UI. This is my first time creating a UI for projects like text-to-image generation, so there are definitely many deficiencies. Please forgive me.
+
+The reason for this project is that my laptop has an NVIDIA GeForce RTX 4060 graphics card with only 8GB of video memory. If I directly use the official version, the image generation efficiency is very low. However, I don't want to use ComfyUI either because it's too cumbersome. I just need a simple and convenient UI for image generation, and that's why this project came into being.
+
+It minimally supports a CUDA graphics card with 2GB of video memory and 16GB of RAM. It is recommended to have 4GB of video memory and 32GB of RAM or more.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+🎷 好了，下面的内容和Z-Image 官方一致，我已经尽可能将所有环境打包到了一个整合包内，请参考 Releases 页面，模型因为太大，并未打包在内，请自行下载，谢谢！
+🔊Okay, the following content is the same as that of the Z-Image official. I've packed all the environments into an integrated package as much as possible. Please refer to the Releases page. The model is not 
+   included in the package because it's too large. Please download it by yourself. Thank you!
 
 ## ✨ Z-Image
 
