@@ -114,7 +114,7 @@ if len(LORA_FILES) > 30:
     print("⚠️ 警告: LoRA 数量较多，生成界面可能需要几秒钟...")
 
 # ==========================================
-# 模型管理器 (修改版：支持独立权重)
+# 模型管理器 (修改版：支持性能模式切换)
 # ==========================================
 class ModelManager:
     def __init__(self):
@@ -122,7 +122,8 @@ class ModelManager:
         self.current_state = {
             "mode": None,      
             "t_choice": None,  
-            "v_choice": None,  
+            "v_choice": None,
+            "perf_mode": None  # 【新增】记录当前性能模式
         }
         self.current_loras = []
         self.current_weights_map = {} 
@@ -213,12 +214,17 @@ class ModelManager:
         self.current_loras = list(selected_loras)
         self.current_weights_map = dict(weights_map)
 
-    def get_pipeline(self, t_choice, v_choice, selected_loras, weights_map, mode='txt'):
+    def get_pipeline(self, t_choice, v_choice, selected_loras, weights_map, mode='txt', perf_mode="高端机 (显存>=20GB)"):
+        # 判断是否为低端机模式
+        is_low_vram = (perf_mode == "低端机 (显存优化)")
+
+        # 检查是否需要重建模型 (包含性能模式变更的检查)
         need_rebuild = (
             self.pipe is None or
             self.current_state["mode"] != mode or
             self.current_state["t_choice"] != t_choice or
-            self.current_state["v_choice"] != v_choice
+            self.current_state["v_choice"] != v_choice or
+            self.current_state["perf_mode"] != perf_mode  # 【新增】性能模式变更需重建
         )
 
         if need_rebuild:
@@ -227,16 +233,22 @@ class ModelManager:
                 temp_pipe = self._init_pipeline_base(mode)
                 temp_pipe = self._inject_components(temp_pipe, t_choice, v_choice)
                 
+                # 【核心修改】根据选择应用不同的显存优化策略
                 if DEVICE == "cuda":
-                    print("⚡ 启用 GPU 显存分片加载")
-                    temp_pipe.enable_sequential_cpu_offload()
-                
+                    if is_low_vram:
+                        temp_pipe.enable_sequential_cpu_offload()
+                        print("  [System] 已启用低显存优化模式")
+                    else:
+                        temp_pipe.to("cuda")
+                        print("  [System] 已启用高端机模式")
+
                 self.pipe = temp_pipe
                 
                 self.current_state = {
                     "mode": mode,
                     "t_choice": t_choice,
-                    "v_choice": v_choice
+                    "v_choice": v_choice,
+                    "perf_mode": perf_mode
                 }
                 self.current_loras = [] 
                 self.current_weights_map = {}
@@ -283,11 +295,18 @@ def process_lora_inputs(lora_checks, lora_weights):
                 weights_map[fname] = 1.0
     return selected, weights_map
 
+# 【新增】LoRA 刷新函数
+def refresh_lora_list():
+    global LORA_FILES
+    LORA_FILES = scan_lora_files()
+    count = len(LORA_FILES)
+    print(f"🔄 LoRA 刷新完成，当前检测到 {count} 个文件。")
+    # 提示用户刷新网页以看到新控件（因为 Gradio 静态布局限制）
+    msg = f"✅ 扫描完成！检测到 **{count}** 个 LoRA 文件。\n\n*(注：若新增了文件，请**刷新浏览器页面 (F5)** 以加载新的勾选框和滑块)*"
+    return gr.update(value=msg)
+
 # 【新增】更新 Prompt UI 的辅助函数
 def update_prompt_ui_base(prompt, *lora_ui_args):
-    """
-    lora_ui_args 包含: checks (N个) + weights (N个)
-    """
     num_loras = len(LORA_FILES)
     if num_loras == 0:
         return prompt
@@ -295,7 +314,6 @@ def update_prompt_ui_base(prompt, *lora_ui_args):
     checks = lora_ui_args[:num_loras]
     weights = lora_ui_args[num_loras:num_loras*2]
 
-    # 清除旧的 lora 标签
     clean_p = re.sub(r"\s*<lora:[^>]+>", "", prompt or "").strip()
     
     new_tags = []
@@ -317,7 +335,7 @@ def run_inference(*args):
     is_interrupted = False
     
     # 解析参数顺序
-    # [prompt, checks(N), weights(N), t, v, w, h, steps, cfg, seed, random, batch, vram_th]
+    # [prompt, checks(N), weights(N), t, v, perf_mode, w, h, steps, cfg, seed, random, batch, vram_th]
     idx = 0
     prompt = args[idx]; idx += 1
     num_loras = len(LORA_FILES)
@@ -326,6 +344,8 @@ def run_inference(*args):
     
     t_choice = args[idx]; idx += 1
     v_choice = args[idx]; idx += 1
+    perf_mode = args[idx]; idx += 1 # 【新增】性能模式
+    
     w = args[idx]; idx += 1
     h = args[idx]; idx += 1
     steps = args[idx]; idx += 1
@@ -354,7 +374,8 @@ def run_inference(*args):
         final_prompt = prompt
 
     try:
-        pipe = manager.get_pipeline(t_choice, v_choice, selected_loras, weights_map, mode='txt')
+        # 【修改】传入 perf_mode
+        pipe = manager.get_pipeline(t_choice, v_choice, selected_loras, weights_map, mode='txt', perf_mode=perf_mode)
     except Exception as e:
         raise gr.Error(f"模型加载失败: {str(e)}")
 
@@ -407,7 +428,7 @@ def run_img2img(*args, progress=gr.Progress()):
     global is_interrupted
     is_interrupted = False
     
-    # [input_image, prompt, checks(N), weights(N), ...fixed...]
+    # [input_image, prompt, checks(N), weights(N), t, v, perf_mode, ...fixed...]
     idx = 0
     input_image = args[idx]; idx += 1
     prompt = args[idx]; idx += 1
@@ -418,6 +439,8 @@ def run_img2img(*args, progress=gr.Progress()):
     
     t_choice = args[idx]; idx += 1
     v_choice = args[idx]; idx += 1
+    perf_mode = args[idx]; idx += 1 # 【新增】性能模式
+    
     output_width = args[idx]; idx += 1
     output_height = args[idx]; idx += 1
     strength = args[idx]; idx += 1
@@ -472,7 +495,8 @@ def run_img2img(*args, progress=gr.Progress()):
     pipe = None
     
     try:
-        pipe = manager.get_pipeline(t_choice, v_choice, selected_loras, weights_map, mode='img')
+        # 【修改】传入 perf_mode
+        pipe = manager.get_pipeline(t_choice, v_choice, selected_loras, weights_map, mode='img', perf_mode=perf_mode)
 
         for i in progress.tqdm(range(int(batch_size)), desc="图生图生成中"):
             if is_interrupted: break
@@ -513,7 +537,7 @@ def run_fusion_img(*args, progress=gr.Progress()):
     global is_interrupted
     is_interrupted = False
     
-    # [image1, image2, prompt, checks(N), weights(N), ...fixed...]
+    # [image1, image2, prompt, checks(N), weights(N), t, v, perf_mode, ...fixed...]
     idx = 0
     image1 = args[idx]; idx += 1
     image2 = args[idx]; idx += 1
@@ -525,6 +549,8 @@ def run_fusion_img(*args, progress=gr.Progress()):
     
     t_choice = args[idx]; idx += 1
     v_choice = args[idx]; idx += 1
+    perf_mode = args[idx]; idx += 1 # 【新增】性能模式
+    
     output_width = args[idx]; idx += 1
     output_height = args[idx]; idx += 1
     blend_strength = args[idx]; idx += 1
@@ -582,7 +608,8 @@ def run_fusion_img(*args, progress=gr.Progress()):
     pipe = None
     
     try:
-        pipe = manager.get_pipeline(t_choice, v_choice, selected_loras, weights_map, mode='img')
+        # 【修改】传入 perf_mode
+        pipe = manager.get_pipeline(t_choice, v_choice, selected_loras, weights_map, mode='img', perf_mode=perf_mode)
 
         for i in progress.tqdm(range(int(batch_size)), desc="融合生成中"):
             if is_interrupted: break
@@ -621,12 +648,9 @@ def run_fusion_img(*args, progress=gr.Progress()):
 # ==========================================
 # UI 界面
 # ==========================================
-# 【新增】定义JS退出脚本：关闭窗口或显示黑屏
 js_kill_window = """
 function() {
-    // 尝试关闭窗口
     setTimeout(function(){ window.close(); }, 1000);
-    // 如果无法关闭，则覆盖页面显示提示
     document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:#fff;font-family:sans-serif;"><h1>🚫 系统已关闭，请直接关闭此标签页</h1></div>';
     document.body.style.backgroundColor = "black";
     document.body.style.overflow = "hidden";
@@ -634,39 +658,21 @@ function() {
 }
 """
 
-# JS退出脚本：关闭窗口或显示黑屏
-js_kill_window = """
-function() {
-    // 尝试关闭窗口
-    setTimeout(function(){ window.close(); }, 1000);
-    // 如果无法关闭，则覆盖页面显示提示
-    document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:#fff;font-family:sans-serif;"><h1>🚫 系统已关闭，请直接关闭此标签页</h1></div>';
-    document.body.style.backgroundColor = "black";
-    document.body.style.overflow = "hidden";
-    return [];
-}
-"""
-
-# Python退出函数：关闭进程
 def kill_system_process():
     print("🛑 正在执行一键退出程序...")
     try:
-        # 1. 优先关闭启动器 (Windows)
         os.system("taskkill /F /IM Z-Image-Launcher.exe")
     except Exception:
         pass
-
-    # 延迟1秒，确保前端JS有机会执行
     time.sleep(1)
-
     try:
-        # 2. 强制杀掉所有 Python 进程
         os.system("taskkill /F /IM python.exe")
     except Exception:
         pass
-
-    # 3. 最后自杀（如果上面没杀掉自己的话）
     sys.exit(0)
+
+# 【新增】根据显存自动判断默认模式
+DEFAULT_PERF_MODE = "低端机 (显存优化)" if TOTAL_VRAM < 20 * 1024**3 else "高端机 (显存>=20GB)"
 
 with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
 
@@ -674,7 +680,6 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
     print('  本软件由 Leewheel 免费分享，严禁售卖！')
     print('!'*60 + '\n')
     gr.Warning('本软件由 Leewheel 免费分享。如果你是付费购买，你被骗了！', duration=20)
-    # 【修改】顶部增加一键退出按钮
     with gr.Row(elem_id="header_row"):
         gr.Markdown("# 🎨 造相 Z-Image Pro Studio | 作者:  Leewheel(V1.00C)")
         exit_btn = gr.Button("❌ 一键退出系统", variant="stop", scale=0, min_width=150)
@@ -690,19 +695,22 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
                     manual_flush_btn = gr.Button("🧹 清理显存", size="sm", variant="secondary")
                     vram_threshold_slider = gr.Slider(50, 98, 90, step=1, label="自动清理阈值 (%)")
                     
-                    # 【核心修改】动态生成每个 LoRA 的控件
+                    # 【修改】LoRA 区域添加刷新按钮
                     with gr.Accordion("LoRA 权重设置 (每个 LoRA 独立调节)", open=False):
                         txt_lora_checks = []
                         txt_lora_sliders = []
+                        
+                        # 【新增】LoRA 刷新按钮和状态提示
+                        with gr.Row():
+                            txt_refresh_lora_btn = gr.Button("🔄 刷新 LoRA 文件列表", size="sm")
+                            txt_lora_info_md = gr.Markdown("")
                         
                         if not LORA_FILES:
                             gr.Markdown("*未检测到 LoRA 文件*")
                         else:
                             for fname in LORA_FILES:
                                 with gr.Row():
-                                    # 复选框
                                     chk = gr.Checkbox(label=fname, value=False, scale=1, container=False)
-                                    # 滑块
                                     sld = gr.Slider(0, 2.0, 1.0, step=0.05, label="权重", scale=4)
                                     txt_lora_checks.append(chk)
                                     txt_lora_sliders.append(sld)
@@ -711,6 +719,14 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
                         refresh_models_btn = gr.Button("🔄 刷新底模/VAE", size="sm")
                         t_drop = gr.Dropdown(label="Transformer", choices=["default"] + scan_model_items(MOD_TRANS_DIR), value="default")
                         v_drop = gr.Dropdown(label="VAE", choices=["default"] + scan_model_items(MOD_VAE_DIR), value="default")
+                        
+                        # 【新增】性能模式选项
+                        perf_mode_radio = gr.Radio(
+                            choices=["高端机 (显存>=20GB)", "低端机 (显存优化)"],
+                            value=DEFAULT_PERF_MODE,
+                            label="性能模式"
+                        )
+                        
                         with gr.Row():
                             width_s = gr.Slider(512, 2048, 1024, step=16, label="宽 (16倍数)")
                             height_s = gr.Slider(512, 2048, 1024, step=16, label="高 (16倍数)")
@@ -798,10 +814,15 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
                         img2img_prompt = gr.Textbox(label="Prompt (推荐)", lines=2, placeholder="描述你想要生成的画面...")
                         img2img_flush = gr.Button("🧹 清理显存", size="sm", variant="secondary")
                         
-                        # 【核心修改】图生图独立控件
+                        # 【修改】图生图独立控件，添加刷新
                         with gr.Accordion("LoRA 权重设置 (独立调节)", open=False):
                             i2i_lora_checks = []
                             i2i_lora_sliders = []
+                            
+                            with gr.Row():
+                                i2i_refresh_lora_btn = gr.Button("🔄 刷新 LoRA 文件列表", size="sm")
+                                i2i_lora_info_md = gr.Markdown("")
+
                             if not LORA_FILES:
                                 gr.Markdown("*未检测到 LoRA 文件*")
                             else:
@@ -816,6 +837,14 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
                         img2img_refresh_models = gr.Button("🔄 刷新底模/VAE", size="sm")
                         img2img_t_drop = gr.Dropdown(label="Transformer", choices=["default"] + scan_model_items(MOD_TRANS_DIR), value="default")
                         img2img_v_drop = gr.Dropdown(label="VAE", choices=["default"] + scan_model_items(MOD_VAE_DIR), value="default")
+                        
+                        # 【新增】图生图性能模式
+                        img2img_perf_mode = gr.Radio(
+                            choices=["高端机 (显存>=20GB)", "低端机 (显存优化)"],
+                            value=DEFAULT_PERF_MODE,
+                            label="性能模式"
+                        )
+                        
                         with gr.Row():
                             img2img_width_s = gr.Slider(0, 2048, 0, step=16, label="输出宽 (0=自动保持比例)")
                             img2img_height_s = gr.Slider(0, 2048, 0, step=16, label="输出高 (0=自动保持比例)")
@@ -844,10 +873,15 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
                         fusion_prompt = gr.Textbox(label="融合描述 Prompt", lines=3)
                         fusion_flush = gr.Button("🧹 清理显存", size="sm", variant="secondary")
                         
-                        # 【核心修改】融合图独立控件
+                        # 【修改】融合图独立控件，添加刷新
                         with gr.Accordion("LoRA 权重设置 (独立调节)", open=False):
                             fusion_lora_checks = []
                             fusion_lora_sliders = []
+                            
+                            with gr.Row():
+                                fusion_refresh_lora_btn = gr.Button("🔄 刷新 LoRA 文件列表", size="sm")
+                                fusion_lora_info_md = gr.Markdown("")
+
                             if not LORA_FILES:
                                 gr.Markdown("*未检测到 LoRA 文件*")
                             else:
@@ -862,6 +896,14 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
                         fusion_refresh_models = gr.Button("🔄 刷新底模/VAE", size="sm")
                         fusion_t_drop = gr.Dropdown(label="Transformer", choices=["default"] + scan_model_items(MOD_TRANS_DIR), value="default")
                         fusion_v_drop = gr.Dropdown(label="VAE", choices=["default"] + scan_model_items(MOD_VAE_DIR), value="default")
+                        
+                        # 【新增】融合图性能模式
+                        fusion_perf_mode = gr.Radio(
+                            choices=["高端机 (显存>=20GB)", "低端机 (显存优化)"],
+                            value=DEFAULT_PERF_MODE,
+                            label="性能模式"
+                        )
+                        
                         with gr.Row():
                             fusion_width_s = gr.Slider(0, 2048, 0, step=16, label="输出宽 (0=自动保持比例)")
                             fusion_height_s = gr.Slider(0, 2048, 0, step=16, label="输出高 (0=自动保持比例)")
@@ -899,14 +941,8 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
     # 按钮事件绑定
     # -----------------------
     
-    # 【新增】退出按钮绑定事件
-    # 1. 先触发 _js 执行前端清理（变黑、尝试关闭窗口）
-    # 2. 然后触发 fn 执行后端杀进程
-    # 合并逻辑：一次点击同时触发 JS 和 Python
-    exit_btn.click(
-        fn=kill_system_process,   # 后端：杀进程
-        js=js_kill_window         # 前端：关网页或显示黑屏
-    )
+    # 退出按钮
+    exit_btn.click(fn=kill_system_process, js=js_kill_window)
 
     # 文生图
     refresh_models_btn.click(
@@ -916,12 +952,15 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
         ),
         outputs=[t_drop, v_drop]
     )
+    
+    # 【新增】文生图 LoRA 刷新
+    txt_refresh_lora_btn.click(fn=refresh_lora_list, outputs=txt_lora_info_md)
+    
     manual_flush_btn.click(
         fn=lambda: (gc.collect(), torch.cuda.empty_cache(), get_vram_info()[1])[2],
         outputs=vram_info_display
     )
 
-    # 【新增】绑定文生图 Prompt 自动更新
     txt_ui_inputs = [prompt_input] + txt_lora_checks + txt_lora_sliders
     for c in txt_lora_checks + txt_lora_sliders:
         c.change(fn=update_prompt_ui_base, inputs=txt_ui_inputs, outputs=prompt_input)
@@ -931,7 +970,8 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
         outputs=[run_btn, stop_btn]
     ).then(
         fn=run_inference,
-        inputs=txt_ui_inputs + [t_drop, v_drop, width_s, height_s, step_s, cfg_s, seed_n, random_c, batch_s, vram_threshold_slider],
+        # 【修改】输入增加 perf_mode_radio
+        inputs=txt_ui_inputs + [t_drop, v_drop, perf_mode_radio, width_s, height_s, step_s, cfg_s, seed_n, random_c, batch_s, vram_threshold_slider],
         outputs=[res_gallery, res_seed, vram_info_display]
     ).then(
         fn=ui_to_idle,
@@ -951,17 +991,21 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
     def refresh_all_models_img():
         return gr.update(choices=["default"] + scan_model_items(MOD_TRANS_DIR)), gr.update(choices=["default"] + scan_model_items(MOD_VAE_DIR))
     img2img_refresh_models.click(fn=refresh_all_models_img, outputs=[img2img_t_drop, img2img_v_drop])
+    
+    # 【新增】图生图 LoRA 刷新
+    i2i_refresh_lora_btn.click(fn=refresh_lora_list, outputs=i2i_lora_info_md)
+    
     img2img_flush.click(fn=lambda: (gc.collect(), torch.cuda.empty_cache(), get_vram_info()[1])[2], outputs=vram_info_display)
 
-    # 【新增】绑定图生图 Prompt 自动更新
     i2i_ui_inputs = [img2img_prompt] + i2i_lora_checks + i2i_lora_sliders
     for c in i2i_lora_checks + i2i_lora_sliders:
         c.change(fn=update_prompt_ui_base, inputs=i2i_ui_inputs, outputs=img2img_prompt)
 
     img2img_event = img2img_run_btn.click(fn=ui_to_running, outputs=[img2img_run_btn, img2img_stop_btn])\
         .then(fn=run_img2img,
+              # 【修改】输入增加 img2img_perf_mode
               inputs=[img2img_input, img2img_prompt] + i2i_lora_checks + i2i_lora_sliders + 
-                      [img2img_t_drop, img2img_v_drop, img2img_width_s, img2img_height_s,
+                      [img2img_t_drop, img2img_v_drop, img2img_perf_mode, img2img_width_s, img2img_height_s,
                        img2img_strength, img2img_steps, img2img_cfg, img2img_seed, img2img_random, img2img_batch, vram_threshold_slider],
               outputs=[img2img_gallery, img2img_res_seed, vram_info_display])\
         .then(fn=ui_to_idle, outputs=[img2img_run_btn, img2img_stop_btn])
@@ -970,17 +1014,21 @@ with gr.Blocks(title="造相 Z-Image Pro Studio | 作者: ") as demo:
 
     # 融合图
     fusion_refresh_models.click(fn=refresh_all_models_img, outputs=[fusion_t_drop, fusion_v_drop])
+    
+    # 【新增】融合图 LoRA 刷新
+    fusion_refresh_lora_btn.click(fn=refresh_lora_list, outputs=fusion_lora_info_md)
+    
     fusion_flush.click(fn=lambda: (gc.collect(), torch.cuda.empty_cache(), get_vram_info()[1])[2], outputs=vram_info_display)
 
-    # 【新增】绑定融合图 Prompt 自动更新
     fusion_ui_inputs = [fusion_prompt] + fusion_lora_checks + fusion_lora_sliders
     for c in fusion_lora_checks + fusion_lora_sliders:
         c.change(fn=update_prompt_ui_base, inputs=fusion_ui_inputs, outputs=fusion_prompt)
 
     fusion_event = fusion_run_btn.click(fn=ui_to_running, outputs=[fusion_run_btn, fusion_stop_btn])\
         .then(fn=run_fusion_img,
+              # 【修改】输入增加 fusion_perf_mode
               inputs=[fusion_input1, fusion_input2, fusion_prompt] + fusion_lora_checks + fusion_lora_sliders + 
-                      [fusion_t_drop, fusion_v_drop, fusion_width_s, fusion_height_s,
+                      [fusion_t_drop, fusion_v_drop, fusion_perf_mode, fusion_width_s, fusion_height_s,
                        fusion_blend, fusion_strength, fusion_steps, fusion_cfg, 
                        fusion_seed, fusion_random, fusion_batch, vram_threshold_slider],
               outputs=[fusion_gallery, fusion_res_seed, vram_info_display])\
