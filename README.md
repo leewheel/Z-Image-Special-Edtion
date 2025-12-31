@@ -13,6 +13,7 @@
 
 
 欢迎来到Z-Image（造相）基于官方代码库修改的版本!
+
 Welcome to the modified version of Z-Image (Photography Creation) based on the official codebase!
 
 </div>
@@ -30,6 +31,7 @@ It minimally supports a CUDA graphics card with 2GB of video memory and 16GB of 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 🎷 好了，下面的内容和Z-Image 官方一致，我已经尽可能将所有环境打包到了一个整合包内，请参考 Releases 页面，模型因为太大，并未打包在内，请自行下载，谢谢！
+
 🔊Okay, the following content is the same as that of the Z-Image official. I've packed all the environments into an integrated package as much as possible. Please refer to the Releases page. The model is not 
    included in the package because it's too large. Please download it by yourself. Thank you!
 
