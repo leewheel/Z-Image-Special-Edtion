@@ -30,10 +30,9 @@ The reason for this project is that my laptop has an NVIDIA GeForce RTX 4060 gra
 It minimally supports a CUDA graphics card with 2GB of video memory and 16GB of RAM. It is recommended to have 4GB of video memory and 32GB of RAM or more.
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-🎷 好了，下面的内容和Z-Image 官方一致，我已经尽可能将所有环境打包到了一个整合包内，请参考 Releases 页面，模型因为太大，并未打包在内，请自行下载，谢谢！
+🎷 好了，下面的内容和Z-Image 官方一致，我已经尽可能将所有环境打包到了一个整合包内，由于Github文件数量多限制，请至 https://huggingface.co/leewheel/Z-Image-Special-Edtion/ 下载，国人可在百度网盘下载，链接:https://pan.baidu.com/s/1gJq1HmwyX0uNdgCnf7_0nQ?pwd=3pjk 
 
-🔊Okay, the following content is the same as that of the Z-Image official. I've packed all the environments into an integrated package as much as possible. Please refer to the Releases page. The model is not 
-   included in the package because it's too large. Please download it by yourself. Thank you!
+🔊 Okay, the following content is the same as the official version of Z-Image. I've packed all the environments into an integrated package as much as possible. Due to the file quantity limit on GitHub, please download it from https://huggingface.co/leewheel/Z-Image-Special-Edtion/. Thank you!
 
 ## ✨ Z-Image
 
