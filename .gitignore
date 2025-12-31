@@ -212,6 +212,11 @@ ckpts/
 .isort.cfg
 .pre-commit-config.yaml
 *.DS_Store
+MOD/
+lora/
+outputs/
+python_env/
+gfpgan/
 
 # Ignore generated images
 /*.png
