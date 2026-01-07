@@ -217,6 +217,7 @@ lora/
 outputs/
 python_env/
 gfpgan/
+Z-Image-Launcher.exe.WebView2/
 
 # Ignore generated images
 /*.png
