@@ -1,0 +1,368 @@
+data: {"msg":"estimation","event_id":"16cf39a9bdf041cbb3e3f69ac43c0ae2","rank":0,"queue_size":1,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"09b5f008d0844b39bd00fdb501081244","rank":1,"queue_size":2,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"09b5f008d0844b39bd00fdb501081244","rank":0,"queue_size":1,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"16cf39a9bdf041cbb3e3f69ac43c0ae2","eta":null}
+
+data: {"msg":"process_completed","event_id":"16cf39a9bdf041cbb3e3f69ac43c0ae2","output":{"data":[""],"is_generating":false,"duration":0.0009951591491699219,"average_duration":0.0009951591491699219,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"328e79adda8c485ebe2b2498198df790","rank":1,"queue_size":2,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"17a080e59c7642e5b8c56d14645f4cce","rank":2,"queue_size":3,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6d25444b5faf47cdb5e02946190d8b5c","rank":3,"queue_size":4,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"e21eb3cec1cb48069cd3175ceb58490e","rank":4,"queue_size":5,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"328e79adda8c485ebe2b2498198df790","rank":0,"queue_size":4,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"17a080e59c7642e5b8c56d14645f4cce","rank":1,"queue_size":4,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6d25444b5faf47cdb5e02946190d8b5c","rank":2,"queue_size":4,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"e21eb3cec1cb48069cd3175ceb58490e","rank":3,"queue_size":4,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"09b5f008d0844b39bd00fdb501081244","eta":null}
+
+data: {"msg":"process_completed","event_id":"09b5f008d0844b39bd00fdb501081244","output":{"data":[""],"is_generating":false,"duration":0.0,"average_duration":0.0,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"dfa456f24c4241b7acf09a04e6e6d865","rank":4,"queue_size":5,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"af43406cc1fe4db99a30a26df8f33f7f","rank":5,"queue_size":6,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6006b4b833e2427e9e3776a838afce7b","rank":6,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ed9ef36ca5054dd7abca7501c0be356e","rank":7,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"17a080e59c7642e5b8c56d14645f4cce","rank":0,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6d25444b5faf47cdb5e02946190d8b5c","rank":1,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"e21eb3cec1cb48069cd3175ceb58490e","rank":2,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"dfa456f24c4241b7acf09a04e6e6d865","rank":3,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"af43406cc1fe4db99a30a26df8f33f7f","rank":4,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6006b4b833e2427e9e3776a838afce7b","rank":5,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ed9ef36ca5054dd7abca7501c0be356e","rank":6,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"328e79adda8c485ebe2b2498198df790","eta":null}
+
+data: {"msg":"process_completed","event_id":"328e79adda8c485ebe2b2498198df790","output":{"data":[""],"is_generating":false,"duration":0.0,"average_duration":0.0,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","rank":7,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"94a5721b28584f60b90c7b1053a34bd5","rank":8,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":9,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":10,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6d25444b5faf47cdb5e02946190d8b5c","rank":0,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"e21eb3cec1cb48069cd3175ceb58490e","rank":1,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"dfa456f24c4241b7acf09a04e6e6d865","rank":2,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"af43406cc1fe4db99a30a26df8f33f7f","rank":3,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6006b4b833e2427e9e3776a838afce7b","rank":4,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ed9ef36ca5054dd7abca7501c0be356e","rank":5,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","rank":6,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"94a5721b28584f60b90c7b1053a34bd5","rank":7,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":8,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":9,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"17a080e59c7642e5b8c56d14645f4cce","eta":null}
+
+data: {"msg":"process_completed","event_id":"17a080e59c7642e5b8c56d14645f4cce","output":{"data":[""],"is_generating":false,"duration":0.0,"average_duration":0.0,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":10,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":11,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":12,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":13,"queue_size":14,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"e21eb3cec1cb48069cd3175ceb58490e","rank":0,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"dfa456f24c4241b7acf09a04e6e6d865","rank":1,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"af43406cc1fe4db99a30a26df8f33f7f","rank":2,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6006b4b833e2427e9e3776a838afce7b","rank":3,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ed9ef36ca5054dd7abca7501c0be356e","rank":4,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","rank":5,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"94a5721b28584f60b90c7b1053a34bd5","rank":6,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":7,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":8,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":9,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":10,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":11,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":12,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"6d25444b5faf47cdb5e02946190d8b5c","eta":null}
+
+data: {"msg":"process_completed","event_id":"6d25444b5faf47cdb5e02946190d8b5c","output":{"data":[""],"is_generating":false,"duration":0.0009996891021728516,"average_duration":0.0009996891021728516,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":13,"queue_size":14,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"dfa456f24c4241b7acf09a04e6e6d865","rank":0,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"af43406cc1fe4db99a30a26df8f33f7f","rank":1,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6006b4b833e2427e9e3776a838afce7b","rank":2,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ed9ef36ca5054dd7abca7501c0be356e","rank":3,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","rank":4,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"94a5721b28584f60b90c7b1053a34bd5","rank":5,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":6,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":7,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":8,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":9,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":10,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":11,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":12,"queue_size":13,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"e21eb3cec1cb48069cd3175ceb58490e","eta":null}
+
+data: {"msg":"process_completed","event_id":"e21eb3cec1cb48069cd3175ceb58490e","output":{"data":[""],"is_generating":false,"duration":0.0009968280792236328,"average_duration":0.0009968280792236328,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"af43406cc1fe4db99a30a26df8f33f7f","rank":0,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"6006b4b833e2427e9e3776a838afce7b","rank":1,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ed9ef36ca5054dd7abca7501c0be356e","rank":2,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","rank":3,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"94a5721b28584f60b90c7b1053a34bd5","rank":4,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":5,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":6,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":7,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":8,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":9,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":10,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":11,"queue_size":12,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"dfa456f24c4241b7acf09a04e6e6d865","eta":null}
+
+data: {"msg":"process_completed","event_id":"dfa456f24c4241b7acf09a04e6e6d865","output":{"data":[""],"is_generating":false,"duration":0.0008981227874755859,"average_duration":0.0008981227874755859,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"6006b4b833e2427e9e3776a838afce7b","rank":0,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ed9ef36ca5054dd7abca7501c0be356e","rank":1,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","rank":2,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"94a5721b28584f60b90c7b1053a34bd5","rank":3,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":4,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":5,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":6,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":7,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":8,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":9,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":10,"queue_size":11,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"af43406cc1fe4db99a30a26df8f33f7f","eta":null}
+
+data: {"msg":"process_completed","event_id":"af43406cc1fe4db99a30a26df8f33f7f","output":{"data":[""],"is_generating":false,"duration":0.0,"average_duration":0.0,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"ed9ef36ca5054dd7abca7501c0be356e","rank":0,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","rank":1,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"94a5721b28584f60b90c7b1053a34bd5","rank":2,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":3,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":4,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":5,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":6,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":7,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":8,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":9,"queue_size":10,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"6006b4b833e2427e9e3776a838afce7b","eta":null}
+
+data: {"msg":"process_completed","event_id":"6006b4b833e2427e9e3776a838afce7b","output":{"data":[""],"is_generating":false,"duration":0.0010645389556884766,"average_duration":0.0010645389556884766,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","rank":0,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"94a5721b28584f60b90c7b1053a34bd5","rank":1,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":2,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":3,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":4,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":5,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":6,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":7,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":8,"queue_size":9,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"ed9ef36ca5054dd7abca7501c0be356e","eta":null}
+
+data: {"msg":"process_completed","event_id":"ed9ef36ca5054dd7abca7501c0be356e","output":{"data":[""],"is_generating":false,"duration":0.0008971691131591797,"average_duration":0.0008971691131591797,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"94a5721b28584f60b90c7b1053a34bd5","rank":0,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":1,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":2,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":3,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":4,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":5,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":6,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":7,"queue_size":8,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","eta":null}
+
+data: {"msg":"process_completed","event_id":"ebdac9cbeb9e4b818ac8e99f356b59f2","output":{"data":[""],"is_generating":false,"duration":0.0,"average_duration":0.0,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"ff21ae191c2a42c9b79b824b8b32905f","rank":0,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":1,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":2,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":3,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":4,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":5,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":6,"queue_size":7,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"94a5721b28584f60b90c7b1053a34bd5","eta":null}
+
+data: {"msg":"process_completed","event_id":"94a5721b28584f60b90c7b1053a34bd5","output":{"data":[""],"is_generating":false,"duration":0.0005743503570556641,"average_duration":0.0005743503570556641,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"d802d65926764c3ba7c02648f025281f","rank":0,"queue_size":6,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":1,"queue_size":6,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":2,"queue_size":6,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":3,"queue_size":6,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":4,"queue_size":6,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":5,"queue_size":6,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"ff21ae191c2a42c9b79b824b8b32905f","eta":null}
+
+data: {"msg":"process_completed","event_id":"ff21ae191c2a42c9b79b824b8b32905f","output":{"data":[""],"is_generating":false,"duration":0.0,"average_duration":0.0,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","rank":0,"queue_size":5,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":1,"queue_size":5,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":2,"queue_size":5,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":3,"queue_size":5,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":4,"queue_size":5,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"d802d65926764c3ba7c02648f025281f","eta":null}
+
+data: {"msg":"process_completed","event_id":"d802d65926764c3ba7c02648f025281f","output":{"data":[""],"is_generating":false,"duration":0.0,"average_duration":0.0,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","rank":0,"queue_size":4,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":1,"queue_size":4,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":2,"queue_size":4,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":3,"queue_size":4,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","eta":null}
+
+data: {"msg":"process_completed","event_id":"2fb5a342cd674e588e90c2f3dba2d99e","output":{"data":[""],"is_generating":false,"duration":0.0,"average_duration":0.0,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"88c049d0395f4602a8d5f31099acfb15","rank":0,"queue_size":3,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":1,"queue_size":3,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":2,"queue_size":3,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","eta":null}
+
+data: {"msg":"process_completed","event_id":"385bc47bf1734bcc9bae2cfeb8826a11","output":{"data":[""],"is_generating":false,"duration":0.0009951591491699219,"average_duration":0.0009951591491699219,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"14984426b0d74192bd1e8fe62f270936","rank":0,"queue_size":2,"rank_eta":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":1,"queue_size":2,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"88c049d0395f4602a8d5f31099acfb15","eta":null}
+
+data: {"msg":"process_completed","event_id":"88c049d0395f4602a8d5f31099acfb15","output":{"data":[""],"is_generating":false,"duration":0.0015139579772949219,"average_duration":0.0015139579772949219,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"estimation","event_id":"1c948b64ea9448198d75eec8ce2f93a0","rank":0,"queue_size":1,"rank_eta":null}
+
+data: {"msg":"process_starts","event_id":"14984426b0d74192bd1e8fe62f270936","eta":null}
+
+data: {"msg":"process_completed","event_id":"14984426b0d74192bd1e8fe62f270936","output":{"data":[""],"is_generating":false,"duration":0.0009965896606445312,"average_duration":0.0009965896606445312,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"process_starts","event_id":"1c948b64ea9448198d75eec8ce2f93a0","eta":null}
+
+data: {"msg":"process_completed","event_id":"1c948b64ea9448198d75eec8ce2f93a0","output":{"data":[""],"is_generating":false,"duration":0.0008769035339355469,"average_duration":0.0008769035339355469,"render_config":null,"changed_state_ids":[]},"success":true,"title":null}
+
+data: {"msg":"close_stream","event_id":null}
+
